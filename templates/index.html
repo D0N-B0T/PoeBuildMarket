@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE Build-Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        [x-cloak] { display: none !important; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #4299e1, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            transition: all 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        [x-cloak] { display: none !important; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #4299e1, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            transition: all 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            margin: 0 auto;
+            text-align: center;
+            min-width: 1012px;
+        }
+    </style>
+    <style>
+        [x-cloak] { display: none !important; }
+        .card { transition: all 0.3s ease-in-out; }
+        .card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="text-gray-200" x-data="{ darkMode: true }" :class="{ 'dark': darkMode }">
+    
+    <div class="container mx-auto p-6">
+        <div class="flex justify-between items-center mb-6 animate__animated animate__fadeIn">
+            <h1 class="text-4xl font-bold gradient-text">Path of Exile Builds</h1>
+            <button @click="darkMode = !darkMode" class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors duration-300">
+                <svg x-show="!darkMode" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <svg x-show="darkMode" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Filtrado -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6 animate__animated animate__fadeInUp" x-data="{ showFilters: true }">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold gradient-text">Filtrar Builds</h2>
+                <button @click="showFilters = !showFilters" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                    <span x-text="showFilters ? 'Ocultar filtros' : 'Mostrar filtros'"></span>
+                </button>
+            </div>
+            
+            <form method="GET" action="/" x-show="showFilters" x-cloak class="animate-fade-in">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div>
+                        <label for="buildType" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Buscar</label>
+                        <input type="text" id="search" name="buildType" value="{{ request.args.get('search', '') }}" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="class" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Clase</label>
+                        <select id="class" name="class" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="buildType">
+                            <option value="">Todas las Clases</option>
+                            {% for type in unique_types %}
+                            <option value="{{ type }}" {% if request.args.get('buildType') == type %}selected{% endif %}>{{ type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ascendancy" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ascendencia</label>
+                        <select id="ascendancy" name="ascendancy" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <option value="">Todas las Ascendencias</option>
+                            {% for asc in unique_ascendancies %}
+                                <option value="{{ asc }}" {% if asc == request.args.get('ascendancy') %}selected{% endif %}>{{ asc }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="mainSkill" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Habilidad Principal</label>
+                        <select id="mainSkill" name="mainSkill" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <option value="">Todas las Habilidades</option>
+                            {% for skill in unique_skills %}
+                                <option value="{{ skill }}" {% if skill == request.args.get('mainSkill') %}selected{% endif %}>{{ skill }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Build</label>
+                        <select id="type" name="type" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <option value="">Todos los Tipos</option>
+                            {% for build_type in unique_types %}
+                                <option value="{{ build_type }}" {% if build_type == request.args.get('type') %}selected{% endif %}>{{ build_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="minPrice" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Precio Mínimo</label>
+                        <input type="number" id="minPrice" name="minPrice" value="{{ request.args.get('minPrice', '') }}" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="maxPrice" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Precio Máximo</label>
+                        <input type="number" id="maxPrice" name="maxPrice" value="{{ request.args.get('maxPrice', '') }}" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="sort" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ordenar por</label>
+                        <select id="sort" name="sort" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <option value="name" {% if 'name' == request.args.get('sort') %}selected{% endif %}>Nombre</option>
+                            <option value="price_asc" {% if 'price_asc' == request.args.get('sort') %}selected{% endif %}>Precio (Menor a Mayor)</option>
+                            <option value="price_desc" {% if 'price_desc' == request.args.get('sort') %}selected{% endif %}>Precio (Mayor a Menor)</option>
+                        </select>
+                    </div>
+                    
+                </div>
+
+                </div>
+                <div class="mt-4 flex justify-between">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md shadow-md hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300">Filtrar</button>
+                    <a href="/" class="px-4 py-2 bg-gray-600 text-gray-200 rounded-md shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300">Limpiar Filtros</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Builds -->
+        
+        <div class = "container">
+            <div class="mb-4 animate__animated animate__fadeIn">
+                <p class="text-lg font-semibold">Total de builds: <span class="gradient-text">{{ builds|length }}</span></p>
+            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% if builds %}
+                {% for build in builds %}
+                    <div class="card p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 animate__animated animate__fadeInUp" style="animation-delay: {{ loop.index0 * 0.1 }}s;">
+                        <h2 class="text-xl font-semibold mb-2 gradient-text">{{ build.class }} de {{ build.mainSkill}}</h2>
+                        <p><strong>Clase:</strong> {{ build.class }} ({{ build.ascendancy }})</p>
+                        <p><strong>Habilidad Principal:</strong> {{ build.mainSkill }}</p>
+                        <p><strong>Tipo:</strong> {{ build.type }}</p>
+                        <p><strong>Precio:</strong> {{ build.price }}</p>
+                        {% if build.notes %}
+                            <p class="mt-2"><strong>Notas:</strong> {{ build.notes }}</p>
+                        {% endif %}
+                        <div class="mt-4 space-y-2">
+                            <a href="{{ build.pobLink }}" target="_blank" class="block w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md shadow-md hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 text-center">Ver PoB</a>
+                            <a href="https://discord.com/channels/645607528297922560/1009245868051935352/{{ build.discordMessageId }}" target="_blank" class="block w-full px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-md shadow-md hover:from-green-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 text-center">Ver mensaje de discord</a>
+                            <button @click="loadPoBData('{{ build.pobLink }}', '{{ build.id }}')" class="block w-full px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-md shadow-md hover:from-yellow-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-300">Cargar PoB</button>
+                        </div>
+                        <div id="poB-data-{{ build.id }}" class="mt-4"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="col-span-full text-center text-xl gradient-text animate__animated animate__fadeIn">No hay builds disponibles.</p>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            async function loadBuilds(filters = {}) {
+                const query = new URLSearchParams(filters).toString();
+                const response = await fetch(`/api/builds?${query}`);
+                const data = await response.json();
+                const buildsContainer = document.getElementById('builds-container');
+                buildsContainer.innerHTML = data.builds.map((build, index) => `
+                    <div class="card p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.1}s;">
+                        <h2 class="text-xl font-semibold mb-2 gradient-text">${build.name || 'Unnamed Build'}</h2>
+                        <p><strong>Clase:</strong> ${build.class} (${build.ascendancy})</p>
+                        <p><strong>Habilidad Principal:</strong> ${build.mainSkill}</p>
+                        <p><strong>Tipo:</strong> ${build.type}</p>
+                        <p><strong>Precio:</strong> ${build.price} exalted</p>
+                        ${build.notes ? `<p class="mt-2"><strong>Notas:</strong> ${build.notes}</p>` : ''}
+                        <div class="mt-4 space-y-2">
+                            <a href="${build.pobLink}" target="_blank" class="block w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md shadow-md hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 text-center">Ver PoB</a>
+                            <button data-pob-link="${build.pobLink}" data-build-id="${build.id}" class="block w-full px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-md shadow-md hover:from-yellow-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-300">Cargar PoB</button>
+                        </div>
+                        <div id="poB-data-${build.id}" class="mt-4"></div>
+                    </div>
+                `).join('');
+            }
+    
+            window.loadPoBData = async function(pobLink, buildId) {
+                try {
+                    const response = await fetch(`/api/pob-data?link=${encodeURIComponent(pobLink)}`);
+                    const data = await response.json();
+                    const container = document.getElementById(`poB-data-${buildId}`);
+                    
+                    container.innerHTML = `
+                    <h3 class="text-lg font-semibold gradient-text mt-4">Información Adicional</h3>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <p><strong>Título:</strong> ${data.title || 'N/A'}</p>
+                        <p><strong>Resistencias:</strong> ${data.resistencias || 'N/A'}</p>
+                        <p><strong>DPS:</strong> ${data.dps || 'N/A'}</p>
+                        <p><strong>Vida:</strong> ${data.life || 'N/A'}</p>
+                        <p><strong>Mana:</strong> ${data.mana || 'N/A'}</p>
+                        <p><strong>ES:</strong> ${data.es || 'N/A'}</p>
+                        <p><strong>Ward:</strong> ${data.ward || 'N/A'}</p>
+                        <p><strong>eHP:</strong> ${data.ehp || 'N/A'}</p>
+                    </div>
+                    `;
+                    container.classList.add('animate__animated', 'animate__fadeIn');
+                } catch (error) {
+                    console.error('Error cargando datos de PoB:', error);
+                    const container = document.getElementById(`poB-data-${buildId}`);
+                    container.innerHTML = `<p class="text-red-500 animate__animated animate__fadeIn">Error al cargar la información.</p>`;
+                }
+            };
+    
+            document.getElementById('filter-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const filters = new FormData(event.target);
+                const filterObject = Object.fromEntries(filters);
+                loadBuilds(filterObject);
+            });
+    
+            document.querySelectorAll('button[data-pob-link]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const pobLink = button.getAttribute('data-pob-link');
+                    const buildId = button.getAttribute('data-build-id');
+                    window.loadPoBData(pobLink, buildId);
+                });
+            });
+    
+            loadBuilds();
+        });
+    </script>
+</body>
+</html>

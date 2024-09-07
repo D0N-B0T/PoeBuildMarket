@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+[x-cloak] { display: none !important; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+}
+.gradient-text {
+    background: linear-gradient(45deg, #4299e1, #9f7aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.card {
+    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+[x-cloak] { display: none !important; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+}
+.gradient-text {
+    background: linear-gradient(45deg, #4299e1, #9f7aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.card {
+    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    min-width: 1012px;
+}
+
+[x-cloak] { display: none !important; }
+.card { transition: all 0.3s ease-in-out; }
+.card:hover { transform: translateY(-5px); }
